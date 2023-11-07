@@ -1,13 +1,18 @@
 #!/bin/bash
 
-read -p "Enter the project name: " PROJECT_NAME
-read -p "Enter the MySQL database username: " DB_USERNAME
-read -s -p "Enter the MySQL database password: " DB_PASSWORD
+read -p "Project Name: " PROJECT_NAME
+read -p "Enter GitHub Repository url: " GITHUB_URL
+read -p "MySQL Database Username: " DB_USERNAME
+read -s -p "Database Password: " DB_PASSWORD
 
 
-git clone https://github.com/DEVITD/ess.git ./"$PROJECT_NAME"
+mkdir -p "/home/$USER/scripts"
 
-cd "/home/$USER/scripts/$PROJECT_NAME"
+cd "/home/$USER/scripts"
+
+git clone "$GITHUB_URL" "$PROJECT_NAME"
+
+cd "$PROJECT_NAME"
 
 composer install
 
@@ -16,9 +21,9 @@ cp .env.example .env
 php artisan key:generate
 
 
-sed -i "s/DB_DATABASE=ess/DB_DATABASE=$PROJECT_NAME/" .env
-sed -i "s/DB_USERNAME=''/DB_USERNAME=$DB_USERNAME/" .env
-sed -i "s/DB_PASSWORD=/DB_PASSWORD=$DB_PASSWORD/" .env
+sed -i "s/^DB_DATABASE=.*/DB_DATABASE=\"$PROJECT_NAME\"/" .env
+sed -i "s/DB_USERNAME=.*/DB_USERNAME=$DB_USERNAME/" .env
+sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=\"$DB_PASSWORD\"/" .env
 
 
 mysql -u "$DB_USERNAME" -p"$DB_PASSWORD" -e"create database if not exists $PROJECT_NAME;"
