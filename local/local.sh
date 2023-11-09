@@ -27,6 +27,5 @@ php artisan migrate --seed
 chmod -R 775 storage
 chmod -R 775 bootstrap/cache
 
-echo "Your Laravel Project is Ready!"
 
 php artisan serve
