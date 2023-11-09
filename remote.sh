@@ -10,11 +10,11 @@ mkdir -p "/home/$USER/scripts"
 
 cd "/home/$USER/scripts"
 
-git clone "$GITHUB_URL" "$PROJECT_NAME"
+git clone "$GITHUB_URL" "$PROJECT_NAME" || { echo "Faild to Clone Repository. Exiting"; exit 1; }
 
 cd "$PROJECT_NAME"
 
-composer install
+composer install || { echo "Faild to Install Composer Dependencies. Exiting."; exit 1;}
 
 cp .env.example .env
 
@@ -26,9 +26,9 @@ sed -i "s/DB_USERNAME=.*/DB_USERNAME=$DB_USERNAME/" .env
 sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=\"$DB_PASSWORD\"/" .env
 
 
-mysql -u "$DB_USERNAME" -p"$DB_PASSWORD" -e"create database if not exists $PROJECT_NAME;"
+mysql -u "$DB_USERNAME" -p"$DB_PASSWORD" -e"create database if not exists $PROJECT_NAME;" || {echo "Faild to Create Mysql Database. Exiting."; exit 1;}
 
-php artisan migrate --seed
+php artisan migrate --seed || { echo "Failed to Run Migrations. Exiting."; exit 1; }
 
 # build assets (if needed)
 # npm install
