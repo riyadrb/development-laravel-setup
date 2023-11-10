@@ -1,18 +1,36 @@
+# Local Development
 
+## Setup Instructions
 
+1. Run the following command in your terminal:
+    ```bash
+    bash local.sh
+    ```
 
+2. You'll be prompted to provide the following details:
+   - Project name
+   - MySQL database name
+   - MySQL password
 
-### For Local Development
+3. Provide the necessary information as needed, and your local development environment will be set up.
 
-- Run the command "bash local.sh"
-- It will prompt for project name,mysql database and password, Provide as needed and Done!
+---
 
-<hr/>
+# Production Environment
 
+## Deployment Instructions
 
-### For Production Env
+1. Run the following command in your terminal:
+    ```bash
+    bash remote.sh
+    ```
 
-- Run the command "bash remote.sh"
-- It will prompt for project name,mysql database, password and your github repository url, Provide as needed and Done!
-- You can change the scripts as needed for git repository, permissions and others.
+2. You'll be prompted to provide the following details:
+   - Project name
+   - MySQL database name
+   - MySQL password
+   - GitHub repository URL
 
+3. Provide the required information as needed, and the system will automate the deployment process. Feel free to customize the scripts for your specific Git repository, permissions, or other requirements.
+
+---

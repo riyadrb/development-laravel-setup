@@ -7,7 +7,7 @@ command_exists() {
 
 read -p "Project Name: " PROJECT_NAME
 read -p "Enter GitHub Repository url: " GITHUB_URL
-read -p "MySQL Database Username: " DB_USERNAME
+read -p "MySQL Username: " DB_USERNAME
 read -s -p "Database Password: " DB_PASSWORD
 
 
@@ -42,9 +42,10 @@ php artisan key:generate
 php artisan storage:link
 
 
-sed -i "s/^DB_DATABASE=.*/DB_DATABASE=\"$PROJECT_NAME\"/" .env
-sed -i "s/DB_USERNAME=.*/DB_USERNAME=$DB_USERNAME/" .env
-sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=\"$DB_PASSWORD\"/" .env
+
+sed -i -e "s|^DB_DATABASE=.*|DB_DATABASE=\"$PROJECT_NAME\"|" \
+       -e "s|^DB_USERNAME=.*|DB_USERNAME=$DB_USERNAME|" \
+       -e "s|^DB_PASSWORD=.*|DB_PASSWORD=\"$DB_PASSWORD\"|" .env
 
 
 mysql -u "$DB_USERNAME" -p"$DB_PASSWORD" -e"create database if not exists $PROJECT_NAME;" || { echo "Faild to Create Mysql Database. Exiting."; exit 1; }
@@ -57,7 +58,5 @@ php artisan migrate --seed || { echo "Failed to Run Migrations. Exiting."; exit 
 
 chmod -R 775 storage
 chmod -R 775 bootstrap/cache
-
-echo "Your Laravel Project is Ready!"
 
 php artisan serve
