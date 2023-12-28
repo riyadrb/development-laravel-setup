@@ -14,7 +14,7 @@ To set up your local development environment, follow these steps:
 1. Open your terminal and run the following command:
    
     ```bash
-    bash local.sh
+     ./local.sh
     ```
 
 2. The system will prompt you to provide the following information:
@@ -32,7 +32,7 @@ To deploy your Laravel project to a production server, follow these steps:
 1. Open your terminal and run the following command:
 
     ```bash
-    bash remote.sh
+     ./remote.sh
     ```
 
 2. The system will prompt you to provide the following information:
@@ -53,7 +53,7 @@ To collaborate with a team on your Laravel project, use the following command:
 1. Open your terminal and run the following command:
 
     ```bash
-    bash team.sh
+     ./team.sh
     ```
 
 2. The system will prompt you to provide the following information:
