@@ -19,12 +19,12 @@ To set up your local development environment, follow these steps:
 
 2. The system will prompt you to provide the following information:
    - Project name
-   - MySQL database name
+   - MySQL username
    - MySQL password
 
 3. Once you've provided the necessary information, the local development environment will be configured for you. 
 
-
+<!---
 ## Production Environment Deployment
 
 To deploy your Laravel project to a production server, follow these steps:
@@ -43,7 +43,7 @@ To deploy your Laravel project to a production server, follow these steps:
    - *Assumption*: You have root privileges.
 
 3. After entering the required information, the system will automate the deployment process on the production server. It's essential to test your project on your local server before deploying it to production.
-
+-->
 
 
 ## Collaborate with a Team
@@ -58,7 +58,7 @@ To collaborate with a team on your Laravel project, use the following command:
 
 2. The system will prompt you to provide the following information:
    - Project name
-   - MySQL database name
+   - MySQL username
    - MySQL password
    - Repository URL
 
